@@ -152,6 +152,7 @@ int binarySearch(int arr[],int size, int target,int start, int end){
         end = mid -1;
         binarySearch(arr,size,target,start,end);
     }
+    return 0;
 }
 
 
