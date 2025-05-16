@@ -36,11 +36,33 @@ void printInvCounting(int n){
     cout << n << endl;
 }
 
-int returnPower(int pow){
-    if(pow == 1){return 1;}
-    int power = returnPower(pow-1);
-    int finalAns = 2*power;
+int powerOfValue(int n){
+    if(n == 0){
+        return 1;
+    }
+    int ans = 2 * powerOfValue(n-1);
+    return ans;
 }
+
+int fibonacciSeries(int n ){
+    if(n ==  0){
+        return 0;
+    }
+    if(n ==1){
+        return 1;
+    }
+    int ans = (n-1) + (n-2);
+    return ans; 
+}
+
+int getSum(int n){
+    if(n == 1){
+        return 1;
+    }
+    int ans = n+getSum(n-1);
+    return ans;
+}
+
 int main(){
     // -----------------------------------------------------------------------
     // int n;
@@ -58,7 +80,7 @@ int main(){
     // printCounting(n);
 
     // -----------------------------------------------------------------------
-    // counting from n to 1 
+    // counting from 1 to n 
     // int n ;
     // cout << "Enter number to print counting : ";
     // cin>> n;
@@ -67,10 +89,30 @@ int main(){
 
     // -----------------------------------------------------------------------
     // counting from n to 1 
-    int n ;
-    cout << "Enter number to print counting : ";
-    cin>> n;
-    printInvCounting(n);
+    // int n ;
+    // cout << "Enter number to print counting : ";
+    // cin>> n;
+    // printInvCounting(n);
+
+
+    // -----------------------------------------------------------------------
+    // finding power of 2 
+    // int n;
+    // cout << "enter the power ";
+    // cin >> n ;
+
+    // cout << powerOfValue(n) << endl;
+
+    // -----------------------------------------------------------------------
+    // fibonacci series
+
+    // -----------------------------------------------------------------------
+    // sum of n numbers 
+    cout << getSum(10) << endl;
+
+
+
+
 
 
     return 0;
