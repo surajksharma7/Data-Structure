@@ -110,10 +110,5 @@ int main(){
     // sum of n numbers 
     cout << getSum(10) << endl;
 
-
-
-
-
-
     return 0;
 }
