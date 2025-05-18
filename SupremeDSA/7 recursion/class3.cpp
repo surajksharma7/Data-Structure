@@ -1,12 +1,59 @@
 #include<iostream>
 #include<string>
 #include<vector>
+#include<climits>
 
 using namespace std;
 
-int houseRobber(vector<int>&nums){
-    
-}
+class Solution {
+public:
+    int printMaxRob(vector<int>&nums, int size, int index){
+        if(index >= size){
+            return 0;
+        }
+        int includeSum = nums[index] + printMaxRob(nums,size,index+2);
+        int excludeSum = 0 + printMaxRob(nums,size, index+1);
+
+        return max(includeSum, excludeSum);
+    }
+    int rob(vector<int>& nums) {
+        int index = 0;
+        int size = nums.size();
+        int ans = printMaxRob(nums,size,index);
+        return ans;
+    }
+};
+
+class Solution{
+    public:
+        int solve(vector<int>&coins, int amount){
+            int minCoin = INT_MAX;
+            if(amount == 0){
+                return 0;
+            }
+            for(int i =0; i<coins.size();i++){
+                int coin = coins[i];
+
+                if(coin <= amount){
+                    int recursion = solve(coins, amount - coin);
+                    if(recursion != INT_MAX){
+                        int totalCoin = 1+ recursion;
+                        minCoin = min(totalCoin, minCoin);
+                    }
+                }
+            }
+            return minCoin;
+        }
+        int coinChange(vector<int>&coins, int amount){
+            int ans = solve(coins, amount);
+            if(ans == INT_MAX){
+                return -1;
+            }
+            return ans;
+        }
+};
+
+
 bool checkSorted(int arr[], int size, int index){
     if(size-1 == index){
         return true;
@@ -45,5 +92,4 @@ int main(){
 
     cout << myVec.size() << endl;
     return 0;
-
 }
