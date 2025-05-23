@@ -96,6 +96,88 @@ void mergeSort(int arr[], int start, int end){
 //     return 0;
 // }
 
+
+class Solution{
+    public:
+    bool isSafe(int newx, int newy, vector<vector<int>>&maze, vector<vector<bool>>&visited, int n ){
+    
+        if(newx < 0 || newy < 0 || newx >= n || newy >= n){
+            return false;
+        }
+        if(visited[newx][newy] == true){
+            return false;
+        }
+        if(maze[newx][newy] == 0){
+            return false;
+        }
+        return true;
+    }
+
+    vector<string>solve(vector<vector<int>>&maze, int size, int srcx, int srcy, int destx, int desty, vector<vector<bool>>&visited, vector<string>ans, string output){
+        if(srcx == destx && srcy == desty){
+            ans.push_back(output);
+            return;
+        }
+
+        // up wala movement de rahe hai 
+        int newx = srcx -1;
+        int newy = srcy;
+        if(isSafe(newx,newy,maze,visited,size)){
+            visited[newx][newy] = true;
+            solve(maze, size, newx, newy, destx, desty, visited,ans, output+"U");
+            visited[newx][newy] = false;
+        }
+        // up wala movement de rahe hai 
+        newx = srcx +1;
+        newy = srcy;
+        if(isSafe(newx,newy,maze,visited,size)){
+            visited[newx][newy] = true;
+            solve(maze, size, newx, newy, destx, desty, visited,ans, output+"D");
+            visited[newx][newy] = false;
+        }
+        // up wala movement de rahe hai 
+        newx = srcx;
+        newy = srcy-1;
+        if(isSafe(newx,newy,maze,visited,size)){
+            visited[newx][newy] = true;
+            solve(maze, size, newx, newy, destx, desty, visited,ans, output+"L");
+            visited[newx][newy] = false;
+        }
+
+        // up wala movement de rahe hai 
+        newx = srcx;
+        newy = srcy+1;
+        if(isSafe(newx,newy,maze,visited,size)){
+            visited[newx][newy] = true;
+            solve(maze, size, newx, newy, destx, desty, visited,ans, output+"R");
+            visited[newx][newy] = false;
+        }
+    }
+    vector<string> findPath(vector<vector<int>>&maze){
+        int n =   maze.size();
+        // answer store karke yaha store karenge
+        vector<string>ans;
+        //visited ke liye maxtrix banao jisme values 0 honge - false
+        vector<vector<bool>>visited(n, vector<bool>(n,0));
+        // source station kaha se hai matlab kon se index se lekar kon se index tk 
+        int srcx =  0;
+        int srcy = 0;
+        // final destination ka cordinate kya hai 
+        int destx = n-1;
+        int desty = n-1;
+        visited[0][0] = true;
+        string output = "";
+        // function ko call karo   
+        if(maze[0][0] == 0){
+            return ans;
+        } 
+        solve(maze, n, srcx, srcy, destx, desty, visited, ans, output);
+        // answer ko return kar do 
+        return ans; 
+    }
+
+};
+
 int main(){
 
     // int arr[] = {10,20,30,40,50,70};
