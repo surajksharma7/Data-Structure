@@ -1,0 +1,1 @@
+    cout << a.gf << endl; // this will not be visible beacuse the gf parameter is private
