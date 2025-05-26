@@ -30,6 +30,7 @@ Node * insertAtHead(int value, Node * &head, Node * &tail){
             head = newnode;
             tail = newnode;
     }
+    // ading this comment 
     else{
         Node * newnode = new Node(value);
         newnode->next = head;
