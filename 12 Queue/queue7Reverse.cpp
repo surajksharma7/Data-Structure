@@ -14,6 +14,7 @@ void recursiveQueue(queue<int> &q)
     recursiveQueue(q);
     q.push(front);
 }
+
 void reverseQueue(queue<int> &q)
 {
     stack<int> st;
@@ -50,3 +51,4 @@ int main()
     }
     return 0;
 }
+
