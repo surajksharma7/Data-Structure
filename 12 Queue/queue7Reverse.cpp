@@ -15,23 +15,38 @@ void recursiveQueue(queue<int> &q)
     q.push(front);
 }
 
-void reverseQueue(queue<int> &q)
-{
-    stack<int> st;
-    while (!q.empty())
-    {
+// void reverseQueue(queue<int> &q)
+// {
+//     stack<int> st;
+//     while (!q.empty())
+//     {
+//         int element = q.front();
+//         q.pop();
+//         st.push(element);
+//     }
+
+//     while (!st.empty())
+//     {
+//         int element = st.top();
+//         st.pop();
+//         q.push(element);
+//     }
+// };
+
+void reverseStack(queue<int>&q){
+    stack<int>st;
+    while(!q.empty()){
         int element = q.front();
         q.pop();
         st.push(element);
     }
 
-    while (!st.empty())
-    {
-        int element = st.top();
+    while(!st.empty()){
+        int value = st.top();
         st.pop();
-        q.push(element);
+        q.push(value);
     }
-};
+}
 
 int main()
 {
@@ -43,7 +58,7 @@ int main()
     q.push(40);
     q.push(50);
 
-    recursiveQueue(q);
+    reverseStack(q);
     while (!q.empty())
     {
         cout << q.front() << endl;
