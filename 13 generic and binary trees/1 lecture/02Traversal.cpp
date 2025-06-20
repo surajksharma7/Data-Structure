@@ -3,6 +3,8 @@
 // in order -> L N R 
 // postOrder -> L R N 
 #include <iostream>
+#include<queue>
+
 using namespace std;
 
 class Node {
@@ -60,6 +62,24 @@ void postOrdertraversal(Node * root){
     postOrdertraversal(root->right);
     cout << root->data << endl;
 }
+
+void levelOrderTraversal(Node * root){
+    queue<Node *> q;
+    q.push(root);
+
+    while(!q.empty()){
+        Node *front = q.front();
+        q.pop();
+        cout << front->data << " ";
+        if(front->left != NULL){
+            q.push(front->left);
+        }
+        if(front->right != NULL){
+            q.push(front->right);
+        }
+    }
+}
+
 int main() {
     Node *root = createTree();
     preOrderTraversal(root);
